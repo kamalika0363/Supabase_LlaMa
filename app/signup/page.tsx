@@ -4,17 +4,17 @@ import { useState } from "react";
 import supabase from "../../config/supabaseClient";
 
 const SignUpPage = () => {
-  const [email, setEmail] = useState("dhruvrg2003@gmail.com");
+  const [email, setEmail] = useState("dhr2003@gmail.com");
   const [password, setPassword] = useState("123456");
 
   const signup = async () => {
     try {
-      const { data } = await supabase.auth.signUp({
+      await supabase.auth.signUp({
         email: email,
         password: password,
       });
       await supabase.from("user").insert({ email: email });
-      console.log(data?.user?.email);
+      localStorage.setItem("email", email);
     } catch (error) {
       console.log(error);
     }
