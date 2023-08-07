@@ -9,11 +9,12 @@ const SignUpPage = () => {
 
   const signup = async () => {
     try {
-      const { data, error } = await supabase.auth.signUp({
+      const { data } = await supabase.auth.signUp({
         email: email,
         password: password,
       });
-      console.log(data);
+      await supabase.from("user").insert({ email: email });
+      console.log(data?.user?.email);
     } catch (error) {
       console.log(error);
     }
