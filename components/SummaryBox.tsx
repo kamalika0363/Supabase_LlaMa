@@ -39,7 +39,7 @@ const SummaryBox: React.FC = () => {
         />
         <button
           type="submit"
-          className=" text-white rounded-xl p-2 border-2 border-[#3a3a3a] bg-[#272728]"
+          className=" text-white rounded-xl p-3 border-2 border-[#3a3a3a] bg-[#272728]"
         >
           <img src="Icon.svg" alt="Add" />
         </button>
