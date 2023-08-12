@@ -9,11 +9,11 @@ const LoginPage = () => {
 
   const login = async () => {
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      await supabase.auth.signInWithPassword({
         email: email,
         password: password,
       });
-      console.log(data?.user?.email);
+      localStorage.setItem("email", email);
     } catch (error) {
       console.log(error);
     }
