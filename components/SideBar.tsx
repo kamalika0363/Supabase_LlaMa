@@ -7,37 +7,17 @@ const SideBar: React.FC = () => {
   const groupModal = GroupModal();
   // Replace this with your data from the database
   const icons = [
-    {
-      color: "yellow-400",
-      borderColor: "purple-600",
-      src: "/path/to/yellow-fish-icon.png",
-      alt: "Yellow Fish",
-    },
-    {
-      color: "blue-500",
-      borderColor: "purple-600",
-      src: "/path/to/pink-fish-icon.png",
-      alt: "Pink Fish",
-    },
-    {
-      color: "beige",
-      borderColor: "purple-600",
-      src: "/path/to/yellow-cat-icon.png",
-      alt: "Yellow Cat",
-    },
-    {
-      color: "purple-600",
-      borderColor: "yellow-400",
-      src: "/path/to/green-frog-icon.png",
-      alt: "Green Frog",
-    },
+    { color: 'slate-gray-500', src: 'group.svg', alt: 'group' },
+    { color: 'slate-gray-500', src: 'group.svg', alt: 'group' },
+    { color: 'slate-gray-500', src: 'group.svg', alt: 'group' },
+    { color: 'slate-gray-500', src: 'group.svg', alt: 'group ' },
   ];
 
   return (
     <div
       className={`${
         groupModal.isOpen ? "block absolute" : "hidden"
-      } bg-gradient-to-b from-[#262626] to-[#141414] p-6 rounded-xl flex flex-col items-center justify-center h-full md:block w-32 border-2 border-[#292929]`}
+      } bg-gradient-to-b from-[#262626] to-[#141414] p-6 rounded-xl flex flex-col items-center justify-center h-max-full md:block w-32 border-2 border-[#292929] `}
     >
       {icons.map((icon) => (
         <button
@@ -47,12 +27,12 @@ const SideBar: React.FC = () => {
           <img src={icon.src} alt={icon.alt} width="36" height="36" />
         </button>
       ))}
-      <div className="flex flex-col gap-2 mt-auto items-center">
+      <div className="flex flex-col  gap-2 mt-auto items-center">
         <button className="text-[#bd837f] text-md font-semibold ">
           Sign Out
         </button>
         <button type="submit" className=" text-white rounded-xl">
-          <img src="logOut.svg" alt="Log Out" />
+          <img src="logOut.svg" alt="Sign Out" />
         </button>
       </div>
     </div>
