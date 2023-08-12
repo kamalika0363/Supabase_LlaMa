@@ -4,7 +4,7 @@ import { useState } from "react";
 import supabase from "../../config/supabaseClient";
 
 const SignUpPage = () => {
-  const [email, setEmail] = useState("dhruvrg2003@gmail.com");
+  const [email, setEmail] = useState("horrorj18@gmail.com");
   const [password, setPassword] = useState("123456");
 
   const signup = async () => {
