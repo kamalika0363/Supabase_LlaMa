@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import GroupContext from "./groupContext";
 // import { db, storage } from "../../config/firebase";

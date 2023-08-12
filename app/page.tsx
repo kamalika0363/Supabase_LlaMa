@@ -1,10 +1,10 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import LinkBox from "@/components/LinkBox";
-import SummaryBox from "@/components/SummaryBox";
-import SideBar from "@/components/SideBar";
-import GroupState from "@/context/GroupState";
+import LinkBox from "../components/LinkBox";
+import SummaryBox from "../components/SummaryBox";
+import SideBar from "../components/SideBar";
+import GroupState from "../context/GroupState";
 
 export default function Home() {
   return (
