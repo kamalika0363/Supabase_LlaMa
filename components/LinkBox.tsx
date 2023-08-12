@@ -17,7 +17,7 @@ const LinkBox: React.FC = () => {
   return (
     <div className="bg-gradient-to-r from-[#161617] to-[#212020] p-6 rounded-xl flex flex-col item-center justify-center h-full w-3/5 border-2 border-[#272728] ">
       <div className="bg-[#1c1b1c] p-5 rounded-xl item-center justify-center w-full h-96 border-2 border-[#3a3a3a]">
-        <p className="text-gray-300 mb-2 justify-center font-bold">All the links would be posted here</p>
+        <p className="text-gray-300 mb-2 justify-center font-bold text-lg">All the links would be posted here</p>
         <ul className="mt-4 flex-grow overflow-y-auto">
           {links.map((link, index) => (
             <li key={index} className="text-white mt-2">
