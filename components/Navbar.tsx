@@ -5,11 +5,6 @@ import React, { useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 const Navbar = () => {
-<<<<<<< Updated upstream
-  return <div className=" bg-orange-400">
-    Navbar
-    </div>;
-=======
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -56,7 +51,6 @@ const Navbar = () => {
       </div>
     </nav>
   );
->>>>>>> Stashed changes
 };
 
 export default Navbar;
