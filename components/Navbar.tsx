@@ -46,7 +46,7 @@ const Navbar = () => {
           >
             About
           </div>
-          {/* Add more navigation links as needed */}
+         
         </div>
       </div>
     </nav>
