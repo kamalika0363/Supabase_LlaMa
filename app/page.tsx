@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import LinkBox from "@/components/LinkBox";
 import SummaryBox from "@/components/SummaryBox";
+import SideBar from "@/components/SideBar";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <main className="flex-grow">
       <Navbar />
       <div className="flex flex-row p-6 gap-8">
+      <SideBar />
       <LinkBox />
       <SummaryBox /> 
       </div> 
