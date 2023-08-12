@@ -1,23 +1,24 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Groups from "../components/Groups";
-import LinksSection from "../components/LinksSection";
-import AiSection from "../components/AiSection";
-import GroupState from '../context/GroupState';
-
+import LinkBox from "@/components/LinkBox";
+import SummaryBox from "@/components/SummaryBox";
+import SideBar from "@/components/SideBar";
+import GroupState from "@/context/GroupState";
 
 export default function Home() {
   return (
     <GroupState>
     <div className="flex flex-col min-h-screen">
       <main className="flex-grow">
-      <Navbar />
-      <div className=" flex flex-row justify-between">
-      <Groups/>
-      <LinksSection/>
-      <AiSection/>
-      </div>
+        <Navbar />
+        <div className="flex p-2 md:p-6 gap-8">
+          <SideBar />
+          <div className="flex md:flex-row gap-2 md:gap-8 w-full flex-col">
+            <LinkBox />
+            <SummaryBox />
+          </div>
+        </div>
       </main>
       <Footer />
     </div>
