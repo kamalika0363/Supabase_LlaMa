@@ -1,6 +1,6 @@
 "use client";
 
-import supabase from "@/config/supabaseClient";
+import supabase from "../config/supabaseClient";
 import { useCallback, useState } from "react";
 
 const getCurrentUser = () => {
