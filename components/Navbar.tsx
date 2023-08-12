@@ -12,15 +12,15 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-[#161D29] p-4">
+    <nav className="bg-[#131313] p-7">
       <div className="flex justify-between items-center">
-        <div className="text-white text-xl font-semibold">
-           Logo Bano  koi
+        <div className="text-[#b8b8b8] text-xl font-semibold">
+           Supabase
         </div>
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
-            className="text-white focus:outline-none"
+            className="text-[#b8b8b8] focus:outline-none"
           >
             {menuOpen ? (
               <AiOutlineClose className="text-2xl" />
