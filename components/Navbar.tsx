@@ -9,11 +9,13 @@ import {
 import GroupModal from "./GroupModel";
 import AllUsers from "./AllUsers";
 import UsersModal from "./UsersModel";
+import { useContext } from "react";
+import groupContext from "../context/groupContext";
 
-const Navbar = ({ currentUser }) => {
+const Navbar = () => {
+  const { user } = useContext(groupContext);
   const groupModal = GroupModal();
   const usersModel = UsersModal();
-
   return (
     <nav className="bg-[#131313] p-4 flex items-center justify-between">
       <button className="md:hidden text-white text-2xl">
@@ -28,7 +30,7 @@ const Navbar = ({ currentUser }) => {
       </div>
 
       <div className="flex items-center">
-        {currentUser !== undefined ? (
+        {user !== undefined ? (
           <div className="flex text-xl md:gap-5 md:mr-4 gap-2">
             <div className="">
               <button className="text-2xl">
@@ -40,18 +42,18 @@ const Navbar = ({ currentUser }) => {
               </button>
               <AllUsers />
             </div>
-            {currentUser?.image ? (
+            {user?.image ? (
               <img
-                src={currentUser?.image}
+                src={user?.image}
                 alt="User Profile"
                 className="w-8 h-8 rounded-full"
               />
             ) : (
               <div className="border-2 px-2 border-white rounded-full">
-                {currentUser?.email[0]}
+                {user?.email && user?.email[0]}
               </div>
             )}
-            <p className="text-md">{currentUser?.username}</p>
+            <p className="text-md">{user?.username}</p>
           </div>
         ) : (
           <button className="text-2xl mx-2">
