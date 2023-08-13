@@ -4,7 +4,6 @@ import React, { useState } from "react"; // Import React
 import supabase from "../../config/supabaseClient";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Footer from "../../components/Footer";
-import Navbar from "../../components/Navbar";
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -32,7 +31,6 @@ const SignUpPage = () => {
     } catch (error) {
       console.log(error);
     }
-    
   };
 
   return (
@@ -42,11 +40,10 @@ const SignUpPage = () => {
     //   </button>
     // </div>
     <div>
-      <Navbar />
       <div className="flex flex-col place-items-center bg-[#131313] mt-24 mb-28 overscroll-none">
         <div className="mx-auto w-11/12 max-w-[450px] md:mx-0 bg-[#1c1b1c] border-2 border-[#3a3a3a] rounded-lg p-6 shadow-lg">
           <h1 className="text-3xl font-semibold text-gray-200 mb-4 text-center">
-           Signup
+            Signup
           </h1>
           <form className="mt-6 flex flex-col gap-y-4">
             <label className="w-full">

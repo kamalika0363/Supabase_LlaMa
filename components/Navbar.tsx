@@ -1,10 +1,16 @@
 "use client";
-import React, { useState } from "react";
-import { AiOutlineMenu, AiOutlineClose, AiOutlineUser } from "react-icons/ai";
 
-const Navbar = () => {
+import { useState } from "react";
+import {
+  AiOutlineMenu,
+  AiOutlineClose,
+  AiOutlineUser,
+  AiOutlineUserAdd,
+} from "react-icons/ai";
+
+const Navbar = ({ currentUser }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -32,16 +38,26 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center">
-        {userLoggedIn ? (
-          <div className="text-white text-xl mr-4">
-            <img
-              src="path_to_profile_picture"
-              alt="User Profile"
-              className="w-8 h-8 rounded-full"
-            />
+        {currentUser !== undefined ? (
+          <div className="flex text-xl md:gap-5 md:mr-4 gap-2">
+            <button className="text-2xl">
+              <AiOutlineUserAdd />
+            </button>
+            {currentUser?.image ? (
+              <img
+                src={currentUser?.image}
+                alt="User Profile"
+                className="w-8 h-8 rounded-full"
+              />
+            ) : (
+              <div className="border-2 px-2 border-white rounded-full">
+                {currentUser?.email[0]}
+              </div>
+            )}
+            <p className="text-md">{currentUser?.username}</p>
           </div>
         ) : (
-          <button className="text-white text-xl mr-4">
+          <button className="text-2xl mx-2">
             <AiOutlineUser />
           </button>
         )}
