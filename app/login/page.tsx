@@ -2,7 +2,7 @@
 import React, { useState } from "react"; // Import React
 import supabase from "../../config/supabaseClient";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import Footer from "../../components/FooterLanding";
+import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 
 const LoginForm = () => {
@@ -12,17 +12,7 @@ const LoginForm = () => {
     password: "",
   });
 
-  const { email, password } = formData;
-
-  const handleOnChange = (e) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleOnSubmit = async (e) => {
-    e.preventDefault();
+  const login = async () => {
     try {
       await supabase.auth.signInWithPassword({
         email: email,
@@ -34,17 +24,27 @@ const LoginForm = () => {
     }
   };
 
+  const { email, password } = formData;
+
+  const handleOnChange = (e) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col h-screen place-items-center bg-[#131313] mt-24 overscroll-none">
+      <div className="flex flex-col  place-items-center bg-[#131313] mt-24 mb-28 overscroll-none">
         <div className="mx-auto w-11/12 max-w-[450px] md:mx-0 bg-[#1c1b1c] border-2 border-[#3a3a3a] rounded-lg p-6 shadow-lg ">
           <h1 className="text-3xl font-semibold text-gray-200 mb-4 text-center">
             Login
           </h1>
-          <form onSubmit={handleOnSubmit} className="mt-6 flex flex-col gap-y-4">
+          <form onSubmit={login} className="mt-6 flex flex-col gap-y-4">
             <label className="w-full">
-              <p className="mb-1 text-sm text-gray-500">
+              <p className="mb-1 text-sm text-gray-400">
                 Email Address <sup className="text-pink-500">*</sup>
               </p>
               <input
@@ -58,7 +58,7 @@ const LoginForm = () => {
               />
             </label>
             <label className="relative">
-              <p className="mb-1 text-sm text-gray-500">
+              <p className="mb-1 text-sm text-gray-400">
                 Password <sup className="text-pink-500">*</sup>
               </p>
               <input
@@ -90,7 +90,7 @@ const LoginForm = () => {
           </form>
         </div>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

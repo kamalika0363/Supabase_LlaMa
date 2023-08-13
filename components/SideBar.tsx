@@ -28,7 +28,7 @@ const SideBar: React.FC = () => {
           <img src={icon.src} alt={icon.alt} width="36" height="36" />
         </button>
       ))}
-      <div className="flex flex-col  gap-2 mt-auto items-center">
+      <div className="flex flex-col  gap-2 mt-52 items-center">
         <button className="text-[#bd837f] text-md font-semibold ">
           Sign Out
         </button>
