@@ -24,8 +24,8 @@ const SignUpPage = () => {
   const signup = async () => {
     try {
       await supabase.auth.signUp({
-        email: email,
-        password: password,
+        email: "darshanjaju12@gmail.com",
+        password: "12345678",
       });
       await supabase.from("user").insert({ email: email });
       localStorage.setItem("email", email);
