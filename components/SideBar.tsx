@@ -1,17 +1,37 @@
 "use client";
-import React from "react";
-import Icon from "../public/Icon.svg";
+
+import { useEffect, useState } from "react";
+import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import GroupModal from "./GroupModel";
+import CreateGroupModal from "./CreateGroupModel";
+import supabase from "../config/supabaseClient";
 
 const SideBar: React.FC = () => {
   const groupModal = GroupModal();
-  // Replace this with your data from the database
-  const icons = [
-    { color: 'slate-gray-500', src: 'group.svg', alt: 'group' },
-    { color: 'slate-gray-500', src: 'group.svg', alt: 'group' },
-    { color: 'slate-gray-500', src: 'group.svg', alt: 'group' },
-    { color: 'slate-gray-500', src: 'group.svg', alt: 'group ' },
-  ];
+  const createGroup = CreateGroupModal();
+  const [groups, setGroups] = useState([]);
+
+  const getGroups = async () => {
+    try {
+      const temp: any = [];
+      const { data: groupIds } = await supabase
+        .from("user")
+        .select("groupIds")
+        .eq("email", "dhruvrg2003@gmail.com");
+      if (groupIds === null) return [];
+      groupIds[0].groupIds?.map(async (id: string) => {
+        const group = await supabase.from("group").select("*").eq("id", id);
+        temp.push(group?.data && group?.data[0]);
+      });
+      setGroups(temp);
+    } catch (error: any) {
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    getGroups();
+  }, []);
 
   return (
     <div
@@ -19,14 +39,35 @@ const SideBar: React.FC = () => {
         groupModal.isOpen ? "block absolute" : "hidden"
       } bg-gradient-to-b from-[#262626] to-[#141414] p-6 rounded-xl flex flex-col items-center justify-center h-max-full md:block w-32 border-2 border-[#292929] `}
     >
-      {icons.map((icon) => (
+      <div className="flex flex-col">
+        {groups &&
+          groups?.map((group: any) => (
+            <button
+              key={group?.id}
+              className="border-2 border-[#323333] rounded-full p-[1px] mb-4"
+            >
+              {group?.image ? (
+                <img
+                  src={group?.image}
+                  width="36"
+                  height="36"
+                  alt={group?.name}
+                  className="rounded-full"
+                />
+              ) : (
+                <div className="border-2 py-4 border-white rounded-full">
+                  {group?.name[0]}
+                </div>
+              )}
+            </button>
+          ))}
         <button
-          key={icon.alt}
-          className={`bg-${icon.color} border-2 border-[#323333] rounded-full p-2 mb-4`}
+          onClick={() => createGroup.onOpen()}
+          className={`border-2 border-[#323333] rounded-full p-2 mb-4`}
         >
-          <img src={icon.src} alt={icon.alt} width="36" height="36" />
+          <AiOutlineUsergroupAdd size={36} />
         </button>
-      ))}
+      </div>
       <div className="flex flex-col  gap-2 mt-52 items-center">
         <button className="text-[#bd837f] text-md font-semibold ">
           Sign Out

@@ -1,52 +1,50 @@
-"use client"
-import React, { useState } from "react";
-import { AiOutlineMenu, AiOutlineClose, AiOutlineUser } from "react-icons/ai";
+"use client";
 
-const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [userLoggedIn, setUserLoggedIn] = useState(false); // track user login
+import {
+  AiOutlineMenu,
+  AiOutlineClose,
+  AiOutlineUser,
+  AiOutlineUserAdd,
+} from "react-icons/ai";
+import GroupModal from "./GroupModel";
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+const Navbar = ({ currentUser }) => {
+  const groupModal = GroupModal();
 
   return (
-    <nav className="bg-gray-800 p-4 flex items-center justify-between">
-      <div className="flex items-center">
-        <button
-          onClick={toggleMenu}
-          className="text-white text-2xl mr-4"
-        >
-          {menuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
-        </button>
-
-        {/* Short dropdown menu */}
-        {menuOpen && (
-          <div className="ml-2">
-            <ul className="text-white">
-              {/* <li className="py-2">Menu Item 1</li>
-              <li className="py-2">Menu Item 2</li>
-              <li className="py-2">Menu Item 3</li> */}
-            </ul>
-          </div>
+    <nav className="bg-[#131313] p-4 flex items-center justify-between">
+      <button className="md:hidden text-white text-2xl">
+        {groupModal.isOpen ? (
+          <AiOutlineClose onClick={() => groupModal.onClose()} />
+        ) : (
+          <AiOutlineMenu onClick={() => groupModal.onOpen()} />
         )}
-      </div>
-
+      </button>
       <div className="flex items-center">
         <p className="text-white">Supabase LlaMa</p>
       </div>
 
       <div className="flex items-center">
-        {userLoggedIn ? (
-          <div className="text-white text-xl mr-4">
-            <img
-              src="path_to_profile_picture"
-              alt="User Profile"
-              className="w-8 h-8 rounded-full"
-            />
+        {currentUser !== undefined ? (
+          <div className="flex text-xl md:gap-5 md:mr-4 gap-2">
+            <button className="text-2xl">
+              <AiOutlineUserAdd />
+            </button>
+            {currentUser?.image ? (
+              <img
+                src={currentUser?.image}
+                alt="User Profile"
+                className="w-8 h-8 rounded-full"
+              />
+            ) : (
+              <div className="border-2 px-2 border-white rounded-full">
+                {currentUser?.email[0]}
+              </div>
+            )}
+            <p className="text-md">{currentUser?.username}</p>
           </div>
         ) : (
-          <button className="text-white text-xl mr-4">
+          <button className="text-2xl mx-2">
             <AiOutlineUser />
           </button>
         )}
