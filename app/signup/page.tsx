@@ -3,7 +3,6 @@
 import React, { useState } from "react"; // Import React
 import supabase from "../../config/supabaseClient";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import Footer from "../../components/FooterLanding";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 

@@ -87,7 +87,7 @@ const LoginForm = () => {
           </form>
         </div>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
