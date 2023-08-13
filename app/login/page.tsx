@@ -41,7 +41,7 @@ const LoginForm = () => {
           </h1>
           <form onSubmit={login} className="mt-6 flex flex-col gap-y-4">
             <label className="w-full">
-              <p className="mb-1 text-sm text-gray-400">
+              <p className="mb-1 text-sm text-gray-500">
                 Email Address <sup className="text-pink-500">*</sup>
               </p>
               <input
@@ -55,7 +55,7 @@ const LoginForm = () => {
               />
             </label>
             <label className="relative">
-              <p className="mb-1 text-sm text-gray-400">
+              <p className="mb-1 text-sm text-gray-500">
                 Password <sup className="text-pink-500">*</sup>
               </p>
               <input
@@ -87,7 +87,7 @@ const LoginForm = () => {
           </form>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
