@@ -3,7 +3,7 @@ import { FaGithub } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-black sm-bg-gradient text-white pt-4 px-6 flex flex-col items-center mix-blend-screen">
+    <footer className="bg-black sm-bg-gradient text-white pt-4 px-6 flex flex-col items-center mix-blend-screen  bottom-3 mb-2 w-full">
       <a
         href="https://github.com/kamalika0363/Supabase_LlaMa"
         target="_blank"
