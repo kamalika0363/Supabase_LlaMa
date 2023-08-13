@@ -1,15 +1,4 @@
-const nextConfig = {
-    reactStrictMode: true,
-    images: {
-      remotePatterns: [
-        {
-          protocol: "https",
-          hostname: "replicate.com",
-        },
-        {
-          protocol: "https",
-          hostname: "replicate.delivery",
-        },
-      ],
-    },
-  };
+/** @type {import('next').NextConfig} */
+const nextConfig = {}
+
+module.exports = nextConfig

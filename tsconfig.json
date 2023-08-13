@@ -21,16 +21,14 @@
       {
         "name": "next"
       }
-    ],
-    "strictNullChecks": true
+    ]
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx",
-    "context/GroupState.js"
-  ],
+    "**/*.tsx"
+, "context/GroupState.js"  ],
   "exclude": [
     "node_modules"
   ]
