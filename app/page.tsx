@@ -9,7 +9,7 @@ import GroupState from "../context/GroupState";
 export default function Home() {
   return (
     <GroupState>
-    <div className="flex flex-col min-h-screen ">
+    <div className="flex flex-col min-h-screen">
       <main className="flex-grow">
         <Navbar />
         <div className="flex p-2 md:p-6 gap-8">
