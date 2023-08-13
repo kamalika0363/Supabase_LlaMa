@@ -48,7 +48,7 @@ const SignUpPage = () => {
           </h1>
           <form className="mt-6 flex flex-col gap-y-4">
             <label className="w-full">
-              <p className="mb-1 text-sm text-gray-700">
+              <p className="mb-1 text-sm text-gray-500">
                 Email Address <sup className="text-pink-500">*</sup>
               </p>
               <input
@@ -58,11 +58,11 @@ const SignUpPage = () => {
                 value={email}
                 onChange={handleOnChange}
                 placeholder="Enter email address"
-                className="w-full rounded-md bg-gray-100 p-3 text-gray-800"
+                className="w-full rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] p-3 text-gray-400"
               />
             </label>
             <label className="relative">
-              <p className="mb-1 text-sm text-gray-700">
+              <p className="mb-1 text-sm text-gray-500">
                 Password <sup className="text-pink-500">*</sup>
               </p>
               <input
@@ -72,7 +72,7 @@ const SignUpPage = () => {
                 value={password}
                 onChange={handleOnChange}
                 placeholder="Enter Password"
-                className="w-full rounded-md bg-gray-100 p-3 pr-12 text-gray-800"
+                className="w-full rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] p-3 pr-12 text-gray-400"
               />
               <span
                 onClick={() => setShowPassword((prev) => !prev)}
@@ -87,7 +87,7 @@ const SignUpPage = () => {
             </label>
             <button
               onClick={() => signup()}
-              className="mt-6 rounded-md bg-gradient-to-r from-yellow-300 to-yellow-500 py-2 px-4 font-medium text-white shadow-md hover:from-yellow-500 hover:to-yellow-700 transform transition-all hover:scale-105"
+              className="mt-6 rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] py-2 px-4 font-medium text-white shadow-md hover:from-zinc-700 hover:to-zinc-900 transform transition-all hover:scale-105"
             >
               Sign In
             </button>

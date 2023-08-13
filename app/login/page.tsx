@@ -51,7 +51,7 @@ const LoginForm = () => {
                 value={email}
                 onChange={handleOnChange}
                 placeholder="Enter email address"
-                className="w-full rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] p-3 text-gray-800"
+                className="w-full rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] p-3 text-gray-400"
               />
             </label>
             <label className="relative">
@@ -65,7 +65,7 @@ const LoginForm = () => {
                 value={password}
                 onChange={handleOnChange}
                 placeholder="Enter Password"
-                className="w-full rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] p-3 pr-12 text-gray-800"
+                className="w-full rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] p-3 pr-12 text-gray-400"
               />
               <span
                 onClick={() => setShowPassword((prev) => !prev)}

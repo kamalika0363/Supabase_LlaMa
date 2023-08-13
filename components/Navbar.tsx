@@ -24,7 +24,7 @@ const Navbar = ({ currentUser }) => {
         )}
       </button>
       <div className="flex items-center">
-        <p className="text-white">Supabase LlaMa</p>
+        <p className="text-white text-2xl">Supabase LlaMa</p>
       </div>
 
       <div className="flex items-center">
