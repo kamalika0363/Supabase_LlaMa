@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   AiOutlineMenu,
   AiOutlineClose,
@@ -14,7 +13,7 @@ const Navbar = ({ currentUser }) => {
 
   return (
     <nav className="bg-[#131313] p-4 flex items-center justify-between">
-      <button className="text-white text-2xl mr-4">
+      <button className="md:hidden text-white text-2xl">
         {groupModal.isOpen ? (
           <AiOutlineClose onClick={() => groupModal.onClose()} />
         ) : (
