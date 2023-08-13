@@ -11,7 +11,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-800 p-4 flex items-center justify-between">
+    <nav className="bg-[#131313] p-4 flex items-center justify-between">
       <div className="flex items-center">
         <button
           onClick={toggleMenu}
@@ -24,16 +24,16 @@ const Navbar = () => {
         {menuOpen && (
           <div className="ml-2">
             <ul className="text-white">
-              {/* <li className="py-2">Menu Item 1</li>
-              <li className="py-2">Menu Item 2</li>
-              <li className="py-2">Menu Item 3</li> */}
+              <li className="py-2">Home</li>
+              <li className="py-2">About</li>
+ 
             </ul>
           </div>
         )}
       </div>
 
       <div className="flex items-center">
-        <p className="text-white">Supabase LlaMa</p>
+        <p className="text-white text-xl">Supabase LlaMa</p>
       </div>
 
       <div className="flex items-center">
