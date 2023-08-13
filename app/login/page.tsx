@@ -12,17 +12,7 @@ const LoginForm = () => {
     password: "",
   });
 
-  const { email, password } = formData;
-
-  const handleOnChange = (e) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleOnSubmit = async (e) => {
-    e.preventDefault();
+  const login = async () => {
     try {
       await supabase.auth.signInWithPassword({
         email: email,
@@ -34,6 +24,16 @@ const LoginForm = () => {
     }
   };
 
+  const { email, password } = formData;
+
+  const handleOnChange = (e) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+
   return (
     <div>
       <Navbar />
@@ -42,7 +42,7 @@ const LoginForm = () => {
           <h1 className="text-3xl font-extrabold text-gray-800 mb-4 text-center">
             Login
           </h1>
-          <form onSubmit={handleOnSubmit} className="mt-6 flex flex-col gap-y-4">
+          <form onSubmit={login} className="mt-6 flex flex-col gap-y-4">
             <label className="w-full">
               <p className="mb-1 text-sm text-gray-700">
                 Email Address <sup className="text-pink-500">*</sup>

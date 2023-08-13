@@ -17,9 +17,9 @@ export const Footer = () => {
                 <li>
                   <a href="#">about us</a>
                 </li>
-                <li>
+                {/* <li>
                   <a href="#">our services</a>
-                </li>
+                </li> */}
                 <li>
                   <a href="#">privacy policy</a>
                 </li>
@@ -31,11 +31,11 @@ export const Footer = () => {
                 <li>
                   <a href="#">FAQ</a>
                 </li>
-                <li>
+                {/* <li>
                   <a href="#">Payments</a>
-                </li>
+                </li> */}
                 <li>
-                  <a href="#">Courses</a>
+                  <a href="#">AI</a>
                 </li>
               </ul>
             </div>

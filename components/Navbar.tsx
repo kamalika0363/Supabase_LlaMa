@@ -1,53 +1,55 @@
-// Navbar.js
 "use client"
 import React, { useState } from "react";
-//import { Link } from "react-router-dom";
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { AiOutlineMenu, AiOutlineClose, AiOutlineUser } from "react-icons/ai";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState(false); // track user login
 
   const toggleMenu = () => {
-    setMenuOpen((prev) => !prev);
+    setMenuOpen(!menuOpen);
   };
 
   return (
-    <nav className="bg-[#161D29] p-4">
-      <div className="flex justify-between items-center">
-        <div className="text-white text-xl font-semibold">
-           Logo Bano  koi
-        </div>
-        <div className="md:hidden">
-          <button
-            onClick={toggleMenu}
-            className="text-white focus:outline-none"
-          >
-            {menuOpen ? (
-              <AiOutlineClose className="text-2xl" />
-            ) : (
-              <AiOutlineMenu className="text-2xl" />
-            )}
-          </button>
-        </div>
-        <div
-          className={`md:flex md:space-x-4 ${
-            menuOpen ? "block mt-4 md:mt-0" : "hidden"
-          }`}
+    <nav className="bg-gray-800 p-4 flex items-center justify-between">
+      <div className="flex items-center">
+        <button
+          onClick={toggleMenu}
+          className="text-white text-2xl mr-4"
         >
-          <div
-           
-            className="text-white hover:text-purple-300 transition duration-300"
-          >
-            Home
+          {menuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
+        </button>
+
+        {/* Short dropdown menu */}
+        {menuOpen && (
+          <div className="ml-2">
+            <ul className="text-white">
+              {/* <li className="py-2">Menu Item 1</li>
+              <li className="py-2">Menu Item 2</li>
+              <li className="py-2">Menu Item 3</li> */}
+            </ul>
           </div>
-          <div
-           
-            className="text-white hover:text-purple-300 transition duration-300"
-          >
-            About
+        )}
+      </div>
+
+      <div className="flex items-center">
+        <p className="text-white">Supabase LlaMa</p>
+      </div>
+
+      <div className="flex items-center">
+        {userLoggedIn ? (
+          <div className="text-white text-xl mr-4">
+            <img
+              src="path_to_profile_picture"
+              alt="User Profile"
+              className="w-8 h-8 rounded-full"
+            />
           </div>
-         
-        </div>
+        ) : (
+          <button className="text-white text-xl mr-4">
+            <AiOutlineUser />
+          </button>
+        )}
       </div>
     </nav>
   );
