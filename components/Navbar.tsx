@@ -7,32 +7,20 @@ import {
   AiOutlineUser,
   AiOutlineUserAdd,
 } from "react-icons/ai";
+import GroupModal from "./GroupModel";
 
 const Navbar = ({ currentUser }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const groupModal = GroupModal();
 
   return (
     <nav className="bg-[#131313] p-4 flex items-center justify-between">
-      <div className="flex items-center">
-        <button onClick={toggleMenu} className="text-white text-2xl mr-4">
-          {menuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
-        </button>
-
-        {/* Short dropdown menu */}
-        {menuOpen && (
-          <div className="ml-2">
-            <ul className="text-white">
-              <li className="py-2">Home</li>
-              <li className="py-2">About</li>
-            </ul>
-          </div>
+      <button className="text-white text-2xl mr-4">
+        {groupModal.isOpen ? (
+          <AiOutlineClose onClick={() => groupModal.onClose()} />
+        ) : (
+          <AiOutlineMenu onClick={() => groupModal.onOpen()} />
         )}
-      </div>
-
+      </button>
       <div className="flex items-center">
         <p className="text-white text-xl">Supabase LlaMa</p>
       </div>

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import GroupContext from "./groupContext";
 // import { db, storage } from "../../config/firebase";
@@ -6,7 +6,7 @@ import GroupContext from "./groupContext";
 // import { getDownloadURL, listAll, ref } from "firebase/storage";
 
 const GroupState = (props) => {
-  const [projects, setProjects] = useState([{name:"Dhruv"}]);
+  const [projects, setProjects] = useState([{ name: "Dhruv" }]);
   // const [id, setId] = useState(0);
   // const [showSection, setShowSection] = useState(true);
 
@@ -51,7 +51,7 @@ const GroupState = (props) => {
   return (
     <GroupContext.Provider
       value={{
-         projects,
+        projects,
         // setProjects,
         // id,
         // setId,

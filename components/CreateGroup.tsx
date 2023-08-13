@@ -3,6 +3,7 @@
 import { useState } from "react";
 import CreateGroupModal from "./CreateGroupModel";
 import supabase from "../config/supabaseClient";
+import { IoMdClose } from "react-icons/io";
 
 const CreateGroup = ({ currentUser }) => {
   const [name, setName] = useState("");
@@ -24,6 +25,7 @@ const CreateGroup = ({ currentUser }) => {
         .from("user")
         .update({ groupIds: currentUser?.groupIds })
         .eq("email", currentUser?.email);
+      createGroup.onClose();
     } catch (error) {
       console.log(error);
     }
@@ -35,7 +37,11 @@ const CreateGroup = ({ currentUser }) => {
 
   return (
     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-900/70">
-      <div className="flex flex-col bg-gray-800 py-16 px-5 rounded-xl gap-5">
+      <div className="flex flex-col items-center bg-gray-800 pb-16 pt-5 px-5 rounded-xl gap-4">
+        <button onClick={() => createGroup.onClose()}>
+          <IoMdClose size={25} />
+        </button>
+        <div className="font-semibold text-lg">Create Group</div>
         <label className="w-full">
           <p className="mb-1 text-sm text-gray-400">
             Group Name<sup className="text-pink-500">*</sup>
@@ -52,7 +58,7 @@ const CreateGroup = ({ currentUser }) => {
         </label>
         <button
           onClick={() => create()}
-          className="mt-6 rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E]  py-2 px-4 font-medium text-white shadow-md hover:from-zinc-700 hover:to-zinc-900 transform transition-all hover:scale-105"
+          className="mt-2 rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E]  py-2 px-4 font-medium text-white shadow-md hover:from-zinc-700 hover:to-zinc-900 transform transition-all hover:scale-105"
         >
           Create
         </button>
