@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
+import getCurrentUser from "../actions/getCurrentUser";
 import Navbar from "../components/Navbar";
 import CreateGroup from "../components/CreateGroup";
 import GroupState from "../context/GroupState";
@@ -17,12 +18,13 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const currentUser = await getCurrentUser();
   return (
     <html lang="en">
       <body className={outfit.className}>
         <GroupState>
-          <CreateGroup />
-          <Navbar />
+          <CreateGroup currentUser={currentUser} />
+          <Navbar currentUser={currentUser} />
           <div>{children}</div>
         </GroupState>
       </body>

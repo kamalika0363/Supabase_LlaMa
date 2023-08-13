@@ -1,13 +1,11 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useState } from "react";
 import CreateGroupModal from "./CreateGroupModel";
 import supabase from "../config/supabaseClient";
 import { IoMdClose } from "react-icons/io";
-import groupContext from "../context/groupContext";
 
-const CreateGroup = () => {
-  const { user } = useContext(groupContext);
+const CreateGroup = ({ currentUser }) => {
   const [name, setName] = useState("");
   const createGroup = CreateGroupModal();
 
@@ -17,16 +15,16 @@ const CreateGroup = () => {
         .from("group")
         .insert({
           name: name,
-          users: [user?.id],
-          user_id: user?.id,
+          users: [currentUser?.id],
+          user_id: currentUser?.id,
         })
         .select();
       setName("");
-      user?.groupIds.push(data && data[0]?.id);
+      currentUser?.groupIds.push(data && data[0]?.id);
       await supabase
         .from("user")
-        .update({ groupIds: user?.groupIds })
-        .eq("email", user?.email);
+        .update({ groupIds: currentUser?.groupIds })
+        .eq("email", currentUser?.email);
       createGroup.onClose();
     } catch (error) {
       console.log(error);
@@ -55,7 +53,7 @@ const CreateGroup = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter Group Name"
-            className="text-white w-full rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] p-3 border-[#3a3a3a] border-2"
+            className="text-white w-full rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] p-3 border-[#3a3a3a] border-2" 
           />
         </label>
         <button
