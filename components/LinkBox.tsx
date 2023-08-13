@@ -1,17 +1,24 @@
 "use client";
-import React, { useState } from "react";
-import Icon from "../public/Icon.svg";
+
+import { useContext, useState } from "react";
+import groupContext from "../context/groupContext";
+import supabase from "../config/supabaseClient";
 
 const LinkBox: React.FC = () => {
-  const [links, setLinks] = useState<string[]>([]);
+  const { groups, id } = useContext(groupContext);
+  const [link, setLink] = useState<string>("");
 
-  const handleAddLink = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleAddLink = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const input = event.currentTarget.elements.namedItem(
-      "link-input"
-    ) as HTMLInputElement;
-    setLinks((prevLinks) => [...prevLinks, input.value]);
-    input.value = "";
+    if (groups[id]?.links == null) {
+      groups[id].links = [];
+    }
+    groups[id]?.links?.push(link);
+    await supabase
+      .from("group")
+      .update({ links: groups[id]?.links })
+      .eq("id", groups[id]?.id);
+    setLink("");
   };
 
   return (
@@ -21,8 +28,8 @@ const LinkBox: React.FC = () => {
           All the links would be posted here
         </p>
         <ul className="mt-4 flex-grow overflow-y-auto">
-          {links.map((link, index) => (
-            <li key={index} className="text-white mt-2">
+          {groups[id]?.links?.map((link: String, idx: any) => (
+            <li key={idx} className="text-white mt-2">
               {link}
             </li>
           ))}
@@ -33,7 +40,10 @@ const LinkBox: React.FC = () => {
         className="mt-20 rounded-lg flex space-x-4"
       >
         <input
-          name="link-input"
+          id="link"
+          name="link"
+          value={link}
+          onChange={(e) => setLink(e.target.value)}
           className="text-gray-300 rounded-xl p-2 pl-5 w-full border-2 border-[#3a3a3a] bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] font-semibold"
           placeholder="Add a link or text"
         />
