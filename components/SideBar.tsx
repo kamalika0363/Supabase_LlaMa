@@ -2,6 +2,7 @@
 import React from "react";
 import Icon from "../public/Icon.svg";
 import GroupModal from "./GroupModel";
+import Signout from "./Signout";
 
 const SideBar: React.FC = () => {
   const groupModal = GroupModal();
