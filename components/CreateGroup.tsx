@@ -37,13 +37,13 @@ const CreateGroup = ({ currentUser }) => {
 
   return (
     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-900/70">
-      <div className="flex flex-col items-center bg-gray-800 pb-16 pt-5 px-5 rounded-xl gap-4">
+      <div className="flex flex-col items-center bg-gradient-to-r from-[#161617] to-[#212020] border-2 border-[#3a3a3a] pb-16 pt-5 px-5 rounded-xl gap-4">
         <button onClick={() => createGroup.onClose()}>
           <IoMdClose size={25} />
         </button>
         <div className="font-semibold text-lg">Create Group</div>
         <label className="w-full">
-          <p className="mb-1 text-sm text-gray-400">
+          <p className="mb-2 text-sm text-gray-400">
             Group Name<sup className="text-pink-500">*</sup>
           </p>
           <input
@@ -53,12 +53,12 @@ const CreateGroup = ({ currentUser }) => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter Group Name"
-            className="text-white w-full rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] p-3"
+            className="text-white w-full rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] p-3 border-[#3a3a3a] border-2" 
           />
         </label>
         <button
           onClick={() => create()}
-          className="mt-2 rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E]  py-2 px-4 font-medium text-white shadow-md hover:from-zinc-700 hover:to-zinc-900 transform transition-all hover:scale-105"
+          className="mt-2 rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E]  py-2 px-4 font-medium text-white shadow-md hover:from-zinc-700 hover:to-zinc-900 transform transition-all hover:scale-105 border-[#3a3a3a] border-2"
         >
           Create
         </button>
