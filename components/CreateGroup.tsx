@@ -37,7 +37,7 @@ const CreateGroup = ({ currentUser }) => {
 
   return (
     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-900/70">
-      <div className="flex flex-col items-center bg-gray-800 pb-16 pt-5 px-5 rounded-xl gap-4">
+      <div className="flex flex-col items-center bg-gradient-to-b from-[#262626] to-[#141414] pb-16 pt-5 px-5 rounded-xl gap-4">
         <button onClick={() => createGroup.onClose()}>
           <IoMdClose size={25} />
         </button>
