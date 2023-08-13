@@ -7,9 +7,12 @@ import {
   AiOutlineUserAdd,
 } from "react-icons/ai";
 import GroupModal from "./GroupModel";
+import AllUsers from "./AllUsers";
+import UsersModal from "./UsersModel";
 
 const Navbar = ({ currentUser }) => {
   const groupModal = GroupModal();
+  const usersModel = UsersModal();
 
   return (
     <nav className="bg-[#131313] p-4 flex items-center justify-between">
@@ -27,9 +30,16 @@ const Navbar = ({ currentUser }) => {
       <div className="flex items-center">
         {currentUser !== undefined ? (
           <div className="flex text-xl md:gap-5 md:mr-4 gap-2">
-            <button className="text-2xl">
-              <AiOutlineUserAdd />
-            </button>
+            <div className="">
+              <button className="text-2xl">
+                {usersModel.isOpen ? (
+                  <AiOutlineUserAdd onClick={() => usersModel.onClose()} />
+                ) : (
+                  <AiOutlineUserAdd onClick={() => usersModel.onOpen()} />
+                )}
+              </button>
+              <AllUsers />
+            </div>
             {currentUser?.image ? (
               <img
                 src={currentUser?.image}

@@ -1,33 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import GroupModal from "./GroupModel";
 import CreateGroupModal from "./CreateGroupModel";
-import supabase from "../config/supabaseClient";
+import groupContext from "../context/groupContext";
 
 const SideBar: React.FC = () => {
+  const { groups, getGroups, setId } = useContext(groupContext);
   const groupModal = GroupModal();
   const createGroup = CreateGroupModal();
-  const [groups, setGroups] = useState([]);
-
-  const getGroups = async () => {
-    try {
-      const temp: any = [];
-      const { data: groupIds } = await supabase
-        .from("user")
-        .select("groupIds")
-        .eq("email", "dhruvrg2003@gmail.com");
-      if (groupIds === null) return [];
-      groupIds[0].groupIds?.map(async (id: string) => {
-        const group = await supabase.from("group").select("*").eq("id", id);
-        temp.push(group?.data && group?.data[0]);
-      });
-      setGroups(temp);
-    } catch (error: any) {
-      return null;
-    }
-  };
 
   useEffect(() => {
     getGroups();
@@ -41,9 +23,10 @@ const SideBar: React.FC = () => {
     >
       <div className="flex flex-col">
         {groups &&
-          groups?.map((group: any) => (
+          groups?.map((group: any, idx: Number) => (
             <button
-              key={group?.id}
+              onClick={() => setId(idx)}
+              key={group.id}
               className="border-2 border-[#323333] rounded-full p-[1px] mb-4"
             >
               {group?.image ? (

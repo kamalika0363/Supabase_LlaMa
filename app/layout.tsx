@@ -4,6 +4,7 @@ import { Outfit } from "next/font/google";
 import getCurrentUser from "../actions/getCurrentUser";
 import Navbar from "../components/Navbar";
 import CreateGroup from "../components/CreateGroup";
+import GroupState from "../context/GroupState";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -21,9 +22,11 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={outfit.className}>
-        <CreateGroup currentUser={currentUser} />
-        <Navbar currentUser={currentUser} />
-        <div>{children}</div>
+        <GroupState>
+          <CreateGroup currentUser={currentUser} />
+          <Navbar currentUser={currentUser} />
+          <div>{children}</div>
+        </GroupState>
       </body>
     </html>
   );

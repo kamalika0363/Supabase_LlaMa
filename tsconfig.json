@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "context/GroupState.js"  ],
   "exclude": [
     "node_modules"
   ]
