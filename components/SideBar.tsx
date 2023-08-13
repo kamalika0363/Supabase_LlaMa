@@ -26,16 +26,16 @@ const SideBar: React.FC = () => {
           groups?.map((group: any, idx: Number) => (
             <button
               onClick={() => setId(idx)}
-              key={group.id}
-              className="border-2 border-[#323333] rounded-full p-[1px] mb-4"
+              key={group?.id}
+              className="border-2 border-[#323333] rounded-full p-[4px] mb-4 items-center justify-center"
             >
               {group?.image ? (
                 <img
                   src={group?.image}
-                  width="36"
+                  width="60"
                   height="36"
                   alt={group?.name}
-                  className="rounded-full"
+                  className="rounded-full "
                 />
               ) : (
                 <div className="border-2 py-4 border-white rounded-full">
@@ -46,7 +46,7 @@ const SideBar: React.FC = () => {
           ))}
         <button
           onClick={() => createGroup.onOpen()}
-          className={`border-2 border-[#323333] rounded-full p-2 mb-4`}
+          className={`border-2 border-[#323333] rounded-full p-4 mb-4`}
         >
           <AiOutlineUsergroupAdd size={36} />
         </button>

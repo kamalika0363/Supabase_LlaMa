@@ -44,7 +44,7 @@ const Navbar = ({ currentUser }) => {
               <img
                 src={currentUser?.image}
                 alt="User Profile"
-                className="w-8 h-8 rounded-full"
+                className="w-8 h-8 rounded-full object-cover"
               />
             ) : (
               <div className="border-2 px-2 border-white rounded-full">
