@@ -1,10 +1,11 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import GroupModal from "./GroupModel";
 import CreateGroupModal from "./CreateGroupModel";
 import groupContext from "../context/groupContext";
+import SignOut from "./SignOut";
 
 const SideBar: React.FC = () => {
   const { groups, getGroups, setId } = useContext(groupContext);
@@ -52,9 +53,7 @@ const SideBar: React.FC = () => {
         </button>
       </div>
       <div className="flex flex-col  gap-2 mt-52 items-center">
-        <button className="text-[#bd837f] text-md font-semibold ">
-          Sign Out
-        </button>
+        <SignOut />
         <button type="submit" className=" text-white rounded-xl">
           <img src="logOut.svg" alt="Sign Out" />
         </button>
