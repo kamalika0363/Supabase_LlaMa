@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import supabase from "../config/supabaseClient";
 import UsersModal from "./UsersModel";
 import groupContext from "../context/groupContext";
+import { toast } from "react-hot-toast";
 
 const AllUsers = () => {
   const { groups, id, user } = useContext(groupContext);
@@ -36,8 +37,10 @@ const AllUsers = () => {
         .from("user")
         .update({ groupIds: allUsers[idx].groupIds })
         .eq("id", allUsers[idx]?.id);
+      toast.success(`Added ${allUsers[idx].email}`);
+      users.onClose();
     } catch (error) {
-      console.log(error);
+      toast.error("Something went wrong.");
     }
   };
 

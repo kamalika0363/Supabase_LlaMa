@@ -3,6 +3,7 @@
 import { useContext, useState } from "react";
 import groupContext from "../context/groupContext";
 import supabase from "../config/supabaseClient";
+import { toast } from "react-hot-toast";
 
 const LinkBox: React.FC = () => {
   const { groups, id, setSumamaryLink } = useContext(groupContext);
@@ -10,15 +11,20 @@ const LinkBox: React.FC = () => {
 
   const handleAddLink = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (groups[id]?.links == null) {
-      groups[id].links = [];
+    try {
+      if (groups[id]?.links == null) {
+        groups[id].links = [];
+      }
+      groups[id]?.links?.push(link);
+      await supabase
+        .from("group")
+        .update({ links: groups[id]?.links })
+        .eq("id", groups[id]?.id);
+      setLink("");
+      toast.success(`Link Added Successfully!`);
+    } catch (error) {
+      toast.error("Something went wrong.");
     }
-    groups[id]?.links?.push(link);
-    await supabase
-      .from("group")
-      .update({ links: groups[id]?.links })
-      .eq("id", groups[id]?.id);
-    setLink("");
   };
 
   return (
