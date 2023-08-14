@@ -32,6 +32,10 @@ const LoginForm = () => {
     }));
   };
 
+  function signInWithGoogle(): void {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <div>
       <div className="flex flex-col  place-items-center bg-[#131313] mt-24 mb-28 overscroll-none">
@@ -80,11 +84,14 @@ const LoginForm = () => {
             </label>
             <button
               type="submit"
-              className="mt-6 rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] py-2 px-4 font-medium text-white shadow-md hover:from-zinc-700 hover:to-zinc-900 transform transition-all hover:scale-105"
+              className="mt-6 rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] py-2 px-4 font-medium text-white shadow-md hover:from-zinc-700 hover:to-zinc-900 transform transition-all hover:scale-105 mb-4"
             >
               Sign In
             </button>
           </form>
+
+          <button className="pl-2" onClick={() => signInWithGoogle()}>Login with Google</button>
+
         </div>
       </div>
       <Footer />
