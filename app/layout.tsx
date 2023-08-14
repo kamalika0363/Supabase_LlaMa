@@ -1,10 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
-import getCurrentUser from "../actions/getCurrentUser";
 import Navbar from "../components/Navbar";
 import CreateGroup from "../components/CreateGroup";
 import GroupState from "../context/GroupState";
+import ToasterProvider from "../components/ToasterProvider";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -18,13 +18,13 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const currentUser = await getCurrentUser();
   return (
     <html lang="en">
       <body className={outfit.className}>
         <GroupState>
-          <CreateGroup currentUser={currentUser} />
-          <Navbar currentUser={currentUser} />
+          <ToasterProvider />
+          <CreateGroup />
+          <Navbar />
           <div>{children}</div>
         </GroupState>
       </body>

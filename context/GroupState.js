@@ -8,15 +8,29 @@ const GroupState = (props) => {
   const [groups, setGroups] = useState([]);
   const [user, setUser] = useState({});
   const [id, setId] = useState(0);
-  const [sumamaryLink, setSumamaryLink] = useState("");
+
+  const getEmail = async () => {
+    try {
+      const { data } = await supabase?.auth?.getUser();
+      if (data.user === null) {
+        return localStorage?.getItem("email");
+      }
+      await supabase.from("user").insert({ email: data?.user?.email });
+      localStorage.setItem("email", data?.user?.email);
+      return data?.user?.email;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const getGroups = async () => {
     try {
+      const email = await getEmail();
       const temp = [];
       const { data: user } = await supabase
         .from("user")
         .select("*")
-        .eq("email", "dhruvrg2003@gmail.com");
+        .eq("email", email);
       if (user === null) return [];
       setUser(user[0]);
       user[0].groupIds?.map(async (id) => {
@@ -37,8 +51,6 @@ const GroupState = (props) => {
         id,
         setId,
         user,
-        sumamaryLink,
-        setSumamaryLink,
       }}
     >
       {props.children}

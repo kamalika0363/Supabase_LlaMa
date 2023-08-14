@@ -1,15 +1,38 @@
 "use client";
 import React, { useState } from "react"; // Import React
 import supabase from "../../config/supabaseClient";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import {
+  AiFillGoogleCircle,
+  AiOutlineEye,
+  AiOutlineEyeInvisible,
+} from "react-icons/ai";
 import Footer from "../../components/Footer";
+import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 const LoginForm = () => {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const signInWithGoogle = async () => {
+    try {
+      await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          queryParams: {
+            access_type: "offline",
+            prompt: "consent",
+          },
+        },
+      });
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
 
   const login = async () => {
     try {
@@ -18,8 +41,10 @@ const LoginForm = () => {
         password: password,
       });
       localStorage.setItem("email", email);
+      router.refresh();
+      toast.success(`Login Successfully!`);
     } catch (error) {
-      console.log(error);
+      toast.error("Something went wrong.");
     }
   };
 
@@ -31,10 +56,6 @@ const LoginForm = () => {
       [e.target.name]: e.target.value,
     }));
   };
-
-  function signInWithGoogle(): void {
-    throw new Error("Function not implemented.");
-  }
 
   return (
     <div>
@@ -55,7 +76,7 @@ const LoginForm = () => {
                 value={email}
                 onChange={handleOnChange}
                 placeholder="Enter email address"
-                className="w-full rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] p-3 text-gray-400"
+                className="w-full rounded-md bg-gray-100 p-3 text-gray-800"
               />
             </label>
             <label className="relative">
@@ -69,7 +90,7 @@ const LoginForm = () => {
                 value={password}
                 onChange={handleOnChange}
                 placeholder="Enter Password"
-                className="w-full rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] p-3 pr-12 text-gray-400"
+                className="w-full rounded-md bg-gray-100 p-3 pr-12 text-gray-800"
               />
               <span
                 onClick={() => setShowPassword((prev) => !prev)}
@@ -84,14 +105,17 @@ const LoginForm = () => {
             </label>
             <button
               type="submit"
-              className="mt-6 rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] py-2 px-4 font-medium text-white shadow-md hover:from-zinc-700 hover:to-zinc-900 transform transition-all hover:scale-105 mb-4"
+              className="mt-6 rounded-md bg-gradient-to-r from-yellow-300 to-yellow-500 py-2 px-4 font-medium text-black shadow-md hover:from-yellow-500 hover:to-yellow-700 transform transition-all hover:scale-105"
             >
-              Sign In
+              Login
             </button>
           </form>
-
-          <button className="pl-2" onClick={() => signInWithGoogle()}>Login with Google</button>
-
+          <div className="flex justify-center gap-2 mt-6 rounded-md bg-gradient-to-r from-yellow-300 to-yellow-500 py-2 px-4 font-medium text-black shadow-md hover:from-yellow-500 hover:to-yellow-700 transform transition-all hover:scale-105">
+            <button onClick={() => signInWithGoogle()}>
+              Login with Google
+            </button>
+            <AiFillGoogleCircle fontSize={24} fill="#000000" />
+          </div>
         </div>
       </div>
       <Footer />
