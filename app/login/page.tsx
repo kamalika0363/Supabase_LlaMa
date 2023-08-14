@@ -3,31 +3,13 @@ import React, { useState } from "react"; // Import React
 import supabase from "../../config/supabaseClient";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Footer from "../../components/Footer";
-import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
-  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
-  const signInWithGoogle = async () => {
-    try {
-      await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: {
-          queryParams: {
-            access_type: "offline",
-            prompt: "consent",
-          },
-        },
-      });
-    } catch (error) {
-      console.log("error: ", error);
-    }
-  };
 
   const login = async () => {
     try {
@@ -100,10 +82,12 @@ const LoginForm = () => {
               type="submit"
               className="mt-6 rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] py-2 px-4 font-medium text-white shadow-md hover:from-zinc-700 hover:to-zinc-900 transform transition-all hover:scale-105 mb-4"
             >
-              Login
+              Sign In
             </button>
           </form>
+
           <button className="pl-2" onClick={() => signInWithGoogle()}>Login with Google</button>
+
         </div>
       </div>
       <Footer />

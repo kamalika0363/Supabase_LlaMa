@@ -3,11 +3,10 @@
 import React, { useState } from "react"; // Import React
 import supabase from "../../config/supabaseClient";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import { useRouter } from "next/navigation";
 
 const SignUpPage = () => {
-  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -15,23 +14,7 @@ const SignUpPage = () => {
   });
   const { email, password } = formData;
 
-  const signInWithGoogle = async () => {
-    try {
-      await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: {
-          queryParams: {
-            access_type: "offline",
-            prompt: "consent",
-          },
-        },
-      });
-    } catch (error) {
-      console.log("error: ", error);
-    }
-  };
-
-  const handleOnChange = (e: any) => {
+  const handleOnChange = (e) => {
     setFormData((prevData) => ({
       ...prevData,
       [e.target.name]: e.target.value,
@@ -40,20 +23,23 @@ const SignUpPage = () => {
 
   const signup = async () => {
     try {
+      await supabase.auth.signUp({
+        email: "darshanjaju12@gmail.com",
+        password: "12345678",
+      });
       await supabase.from("user").insert({ email: email });
       localStorage.setItem("email", email);
-      await supabase.auth.signUp({
-        email: email,
-        password: password,
-      });
-      router.refresh();
-      router.push("/");
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
+    // <div className="p-10">
+    //   <button className="border-2 border-white" onClick={() => signup()}>
+    //     Signup
+    //   </button>
+    // </div>
     <div>
       <div className="flex flex-col place-items-center bg-[#131313] mt-24 mb-28 overscroll-none">
         <div className="mx-auto w-11/12 max-w-[450px] md:mx-0 bg-[#1c1b1c] border-2 border-[#3a3a3a] rounded-lg p-6 shadow-lg">
@@ -102,11 +88,13 @@ const SignUpPage = () => {
             <button
               onClick={() => signup()}
               className="mt-6 rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] py-2 px-4 font-medium text-white shadow-md hover:from-zinc-700 hover:to-zinc-900 transform transition-all hover:scale-105 mb-4"
+
             >
-              Sign Up
+              Sign In
             </button>
           </form>
           <button className="pl-2" onClick={() => signInWithGoogle()}>Login with Google</button>
+
         </div>
       </div>
       <Footer />
