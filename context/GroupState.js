@@ -8,6 +8,7 @@ const GroupState = (props) => {
   const [groups, setGroups] = useState([]);
   const [user, setUser] = useState({});
   const [id, setId] = useState(0);
+  const [sumamaryLink, setSumamaryLink] = useState("");
 
   const getGroups = async () => {
     try {
@@ -36,6 +37,8 @@ const GroupState = (props) => {
         id,
         setId,
         user,
+        sumamaryLink,
+        setSumamaryLink,
       }}
     >
       {props.children}

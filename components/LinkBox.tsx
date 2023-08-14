@@ -5,7 +5,7 @@ import groupContext from "../context/groupContext";
 import supabase from "../config/supabaseClient";
 
 const LinkBox: React.FC = () => {
-  const { groups, id } = useContext(groupContext);
+  const { groups, id, setSumamaryLink } = useContext(groupContext);
   const [link, setLink] = useState<string>("");
 
   const handleAddLink = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -29,7 +29,11 @@ const LinkBox: React.FC = () => {
         </p>
         <ul className="mt-4 flex-grow overflow-y-auto">
           {groups[id]?.links?.map((link: String, idx: any) => (
-            <li key={idx} className="text-white mt-2">
+            <li
+              onClick={() => setSumamaryLink(link)}
+              key={idx}
+              className="text-white mt-2"
+            >
               {link}
             </li>
           ))}
