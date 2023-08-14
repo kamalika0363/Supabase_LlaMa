@@ -20,7 +20,7 @@ const SummaryBox: React.FC = () => {
       }
     );
     const result = await response.json();
-    setOutput(result[0].summary_text);
+    setOutput(result[0] && result[0]?.summary_text);
     setSumamaryLink("");
   };
 
