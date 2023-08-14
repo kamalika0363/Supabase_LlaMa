@@ -34,6 +34,10 @@ const SignUpPage = () => {
     }
   };
 
+  function signInWithGoogle(): void {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     // <div className="p-10">
     //   <button className="border-2 border-white" onClick={() => signup()}>

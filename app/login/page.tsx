@@ -32,6 +32,10 @@ const LoginForm = () => {
     }));
   };
 
+  function signInWithGoogle(): void {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <div>
       <div className="flex flex-col  place-items-center bg-[#131313] mt-24 mb-28 overscroll-none">
