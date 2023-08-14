@@ -69,7 +69,7 @@ const LoginForm = () => {
                 value={email}
                 onChange={handleOnChange}
                 placeholder="Enter email address"
-                className="w-full rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] p-3 text-gray-800"
+                className="w-full rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] p-3 text-gray-400"
               />
             </label>
             <label className="relative">
@@ -83,7 +83,7 @@ const LoginForm = () => {
                 value={password}
                 onChange={handleOnChange}
                 placeholder="Enter Password"
-                className="w-full rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] p-3 pr-12 text-gray-800"
+                className="w-full rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] p-3 pr-12 text-gray-400"
               />
               <span
                 onClick={() => setShowPassword((prev) => !prev)}
@@ -98,12 +98,12 @@ const LoginForm = () => {
             </label>
             <button
               type="submit"
-              className="mt-6 rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] py-2 px-4 font-medium text-white shadow-md hover:from-zinc-700 hover:to-zinc-900 transform transition-all hover:scale-105"
+              className="mt-6 rounded-md bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] py-2 px-4 font-medium text-white shadow-md hover:from-zinc-700 hover:to-zinc-900 transform transition-all hover:scale-105 mb-4"
             >
               Login
             </button>
           </form>
-          <button onClick={() => signInWithGoogle()}>Login with Google</button>
+          <button className="pl-2" onClick={() => signInWithGoogle()}>Login with Google</button>
         </div>
       </div>
       <Footer />
