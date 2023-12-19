@@ -1,70 +1,115 @@
 "use client";
-
-import { useContext, useState } from "react";
-import groupContext from "../context/groupContext";
-import supabase from "../config/supabaseClient";
-import { toast } from "react-hot-toast";
+import React, { useEffect, useState } from 'react';
+import { createClient } from '@/utils/supabase/client';
 
 const LinkBox: React.FC = () => {
-  const { groups, id, setSumamaryLink } = useContext(groupContext);
-  const [link, setLink] = useState<string>("");
+  const [notes, setNotes] = useState<any[] | null>(null);
+  const [newNote, setNewNote] = useState<string>('');
+  const [selectedLink, setSelectedLink] = useState<string | null>(null);
+  const supabase = createClient();
 
-  const handleAddLink = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  useEffect(() => {
+    fetchData().then(r => r);
+  }, []);
+
+  const fetchData = async () => {
     try {
-      if (groups[id]?.links == null) {
-        groups[id].links = [];
+      const { data, error } = await supabase.from('notes').select('id, text')
+
+      if (error) {
+        console.error('Error fetching data:', error);
+      } else {
+        setNotes(data);
       }
-      groups[id]?.links?.push(link);
-      await supabase
-        .from("group")
-        .update({ links: groups[id]?.links })
-        .eq("id", groups[id]?.id);
-      setLink("");
-      toast.success(`Link Added Successfully!`);
     } catch (error) {
-      toast.error("Something went wrong.");
+      console.error('Error getting data:', error);
     }
   };
 
+  const addNote = async () => {
+    try {
+      const { data, error } = await supabase.from('notes').insert([
+        { text: newNote },
+      ]);
+
+      if (error) {
+        console.error('Error adding note:', error);
+      } else {
+        console.log('Note added successfully:', data);
+        setNewNote('');
+        await fetchData();
+      }
+    } catch (error) {
+      console.error('Error adding note:', error);
+    }
+  };
+
+  const deleteNote = async (id: number) => {
+    try {
+      const { error } = await supabase
+          .from('notes')
+          .delete()
+          .eq('id', id)
+          .throwOnError()
+      setNotes(notes?.filter((note) => note.id !== id) || []);
+
+    } catch (error) {
+      console.error('Error deleting note:', error);
+    }
+  };
+
+
+
+  const handleLinkClick = (link: string) => {
+    setSelectedLink(link);
+  };
+
+
   return (
-    <div className="bg-gradient-to-r from-[#161617] to-[#212020] p-6 rounded-xl flex flex-col item-center justify-center md:h-full h-96 md:w-3/5 border-2 border-[#272728] ">
-      <div className="bg-[#1c1b1c] p-5 rounded-xl item-center justify-center w-full h-96 border-2 border-[#3a3a3a]">
-        <p className="text-gray-300 mb-2 justify-center font-bold">
-          Links of the Group
-        </p>
-        <ul className="mt-4 flex-grow overflow-y-auto">
-          {groups[id]?.links?.map((link: String, idx: any) => (
-            <li
-              onClick={() => setSumamaryLink(link)}
-              key={idx}
-              className="text-white mt-2"
-            >
-              {link}
-            </li>
-          ))}
-        </ul>
+      <div className="sm:w-1/2 bg-gradient-to-r from-[#000000] to-[#090909] sm:p-6 rounded-xl flex flex-col item-center justify-center md:h-full h-96 border-2 border-[#272728] overflow-auto p-4 ">
+        <div className="bg-[#04090b] p-5 sm:mt-0 rounded-xl item-center justify-center w-full h-96 border-2 border-[#3a3a3a] overflow-auto">
+          <p className="justify-center mb-2 font-bold text-gray-300">Stored Links</p>
+          <ul className="list-disc list-inside">
+            {notes &&
+                notes.map((note) => (
+                    <li
+                        key={note.id}
+                        onClick={() => handleLinkClick(note.id)}
+                        className={`whitespace-pre-wrap cursor-pointer ${
+                            selectedLink === note.id ? 'text-blue-500' : 'text-gray-300'
+                        }`}
+                    >
+                      {note.text}
+                      <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            deleteNote?.(note.id);
+                          }}
+                          className="ml-2 text-red-500 hover:text-red-700"
+                      >
+                        Delete
+                      </button>
+                    </li>
+                ))}
+          </ul>
+        </div>
+
+        <form onSubmit={addNote} className="flex mt-20 space-x-4 rounded-lg">
+          <input
+              type="text"
+              value={newNote}
+              onChange={(e) => setNewNote(e.target.value)}
+              placeholder="Add Links"
+              className="text-gray-300 rounded-xl p-2 pl-5 w-full border-2 border-[#3a3a3a] bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] font-semibold"
+          />
+          <button
+              type="submit"
+              className="text-white rounded-xl p-3 border-2 border-[#3a3a3a] bg-[#272728]"
+          >
+            <img src={"Icon.svg"} alt="Add" />
+          </button>
+        </form>
       </div>
-      <form
-        onSubmit={handleAddLink}
-        className="mt-20 rounded-lg flex space-x-4"
-      >
-        <input
-          id="link"
-          name="link"
-          value={link}
-          onChange={(e) => setLink(e.target.value)}
-          className="text-gray-300 rounded-xl p-2 pl-5 w-full border-2 border-[#3a3a3a] bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] font-semibold"
-          placeholder="Add a link or text"
-        />
-        <button
-          type="submit"
-          className=" text-white rounded-xl p-3 border-2 border-[#3a3a3a] bg-[#272728]"
-        >
-          <img src="Icon.svg" alt="Add" />
-        </button>
-      </form>
-    </div>
   );
 };
 

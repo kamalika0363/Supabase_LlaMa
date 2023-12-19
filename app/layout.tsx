@@ -1,33 +1,31 @@
-import "./globals.css";
-import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
-import Navbar from "../components/Navbar";
-import CreateGroup from "../components/CreateGroup";
-import GroupState from "../context/GroupState";
-import ToasterProvider from "../components/ToasterProvider";
+import './globals.css'
 
 const outfit = Outfit({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Supabase-LlaMa",
-  description: "App created for supabase hackathon week 8",
-};
 
-export default async function RootLayout({
+const defaultUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : 'http://localhost:3000'
+
+export const metadata = {
+  metadataBase: new URL(defaultUrl),
+  title: 'Next.js and Supabase Starter Kit',
+  description: 'The fastest way to build apps with Next.js and Supabase',
+}
+
+export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={outfit.className}>
-        <GroupState>
-          <ToasterProvider />
-          <CreateGroup />
-          <Navbar />
-          <div>{children}</div>
-        </GroupState>
+    <html lang="en" className={outfit.className}>
+      <body className="bg-background text-foreground bg-gradient-to-r from-[#04090b] to-[#101415]">
+        <main className="flex flex-col items-center min-h-screen">
+          {children}
+        </main>
       </body>
     </html>
-  );
+  )
 }
