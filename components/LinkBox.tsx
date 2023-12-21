@@ -60,8 +60,12 @@ const LinkBox: React.FC = () => {
 
 
 
-  const handleLinkClick = (link: string) => {
-    setSelectedLink(link);
+  const handleLinkClick = (id: string) => {
+    const selectedNote = notes?.find((note) => note.id === id);
+
+    if (selectedNote) {
+      window.open(selectedNote.text, '_blank');
+    }
   };
 
 
