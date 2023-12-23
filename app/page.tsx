@@ -5,7 +5,6 @@ import SummaryBox from '@/components/SummarizerBox'
 import Header from '@/components/Header'
 import { cookies } from 'next/headers'
 import LinkBox from '@/components/LinkBox'
-import SideBar from "@/components/SideBar";
 
 export default async function Index() {
   const cookieStore = cookies()
@@ -33,7 +32,6 @@ export default async function Index() {
       <div className="justify-center items-center w-full">
         <Header />
         <main className="flex flex-col sm:flex-row justify-center gap-4 p-4">
-            {/*<SideBar />*/}
           {isSupabaseConnected ? <SummaryBox /> : <ConnectSupabaseSteps />}
           <LinkBox />
         </main>

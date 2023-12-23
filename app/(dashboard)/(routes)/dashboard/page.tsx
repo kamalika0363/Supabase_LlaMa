@@ -5,7 +5,6 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const DashboardPage = () => {
-    const handleGroupSelection = () => {};
 
     return (
         <div className="">

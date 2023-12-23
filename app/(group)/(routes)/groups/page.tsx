@@ -7,7 +7,6 @@ import Link from "next/link";
 import {ArrowLeft} from "lucide-react";
 
 const Group = () => {
-    const handleGroupSelection = () => {};
 
     return (
         <div>
