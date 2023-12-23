@@ -39,7 +39,7 @@ const GroupCard: React.FC<GroupCardProps> = ({ data }) => {
                 <TableBody>
                     {groupData.map((group: Group, index: number) => (
                         <TableRow key={index}>
-                            <TableCell className="font-medium w-[150px]">
+                            <TableCell className="font-medium sm:w-[150px] flex flex-row">
                                 <Checkbox className="mr-2" />
                                 {group.status}
                             </TableCell>
@@ -48,8 +48,8 @@ const GroupCard: React.FC<GroupCardProps> = ({ data }) => {
                                     {group.group}
                                 </Link>
                             </TableCell>
-                            <TableCell className="w-[150px]">{group.deadline}</TableCell>
-                            <TableCell className="text-right w-[80px] text-center">{group.credits}</TableCell>
+                            <TableCell className="w-[190px]">{group.deadline}</TableCell>
+                            <TableCell className="w-[80px] text-center">{group.credits}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
