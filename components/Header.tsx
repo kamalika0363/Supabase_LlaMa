@@ -1,21 +1,8 @@
 
 export default function Header() {
   return (
-    <div className="flex flex-col items-center gap-16 px-32 sm:px-0">
-      <div className="flex items-center justify-center gap-8">
-        {/* <a
-          href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <SupabaseLogo />
-        </a>
-        <span className="h-6 rotate-45 border-l" />
-        <a href="https://nextjs.org/" target="_blank" rel="noreferrer">
-          <NextLogo />
-        </a> */}
-      </div>
-      {/* <h1 className="sr-only">Supabase and Next.js Starter Template</h1> */}
+    <div className="flex flex-col items-center sm:gap-16 px-20 mt-5 sm:mt-0 sm:px-0 bg-black text-gray-300 ">
+    {/*style={{backgroundImage: "url('https://img.freepik.com/free-vector/gradient-black-background-with-wavy-lines_23-2149158064.jpg?size=626&ext=jpg&ga=GA1.1.105443483.1703193527&semt=ais')", backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>*/}
       <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center">
         The fastest way to Store{' '}
         <a
