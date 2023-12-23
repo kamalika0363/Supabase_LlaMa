@@ -21,27 +21,26 @@ export default async function AuthButton() {
   }
 
   return user ? (
-    <div className="flex items-center gap-4 flex-row text-gray-300">
-      Hey, {user.email} !
-      <form action={signOut}>
-        <button className="border border-gray-400 px-4 py-2 no-underline rounded-md bg-btn-background hover:bg-btn-background-hover">
-          Logout
-        </button>
-        <Link className="border border-gray-400 px-4 mx-4 py-2 no-underline rounded-md bg-btn-background hover:bg-btn-background-hover" href="/dashboard">
-          Dashboard
-        </Link>
-        <Link className="border border-gray-400 px-4 py-2 no-underline rounded-md bg-btn-background hover:bg-btn-background-hover" href="/createGroup">
-          Create Group
-        </Link>
-      </form>
-    </div>
+      <div className="flex flex-col sm:flex-row mt-12 text-gray-300 items-center sm:gap-4 gap-2 mb-5">
+        <span className="">Hey, {user.email} !</span>
+        <form action={signOut}>
+          <button className="mx-1 sm:mx-2 border border-gray-400 px-4 py-2 no-underline rounded-md sm:text-md text-xs bg-btn-background hover:bg-btn-background-hover">
+            Logout
+          </button>
+          <Link className="mx-1 sm:mx-2 border border-gray-400 px-4 py-2 no-underline rounded-md sm:text-md text-xs bg-btn-background hover:bg-btn-background-hover" href="/dashboard">
+            Dashboard
+          </Link>
+          <Link className="mx-1 sm:mx-2 border border-gray-400 px-4 py-2 no-underline rounded-md sm:text-md text-xs bg-btn-background hover:bg-btn-background-hover" href="/createGroup">
+            Create Group
+          </Link>
+        </form>
+      </div>
   ) : (
-    <Link
-      href="/login"
-      className="flex text-gray-200 text-md hover:bg-slate-900 border px-3 py-2 no-underline rounded-md bg-btn-background hover:bg-btn-background-hover"
-    >
-      Login
-    </Link>
+      <Link
+          href="/login"
+          className="flex text-gray-200 text-md hover:bg-slate-900 border px-3 py-2 no-underline rounded-md bg-btn-background hover:bg-btn-background-hover mt-4 sm:mt-0"
+      >
+        Login
+      </Link>
   )
 }
-
