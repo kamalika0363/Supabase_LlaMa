@@ -19,7 +19,7 @@ import { ArrowLeft } from "lucide-react";
 
 
 const CreateGroup = () => {
-    const handleGroupSelection = () => {};
+
 
     return (
         <div className="px-6 flex flex-row gap-14">
