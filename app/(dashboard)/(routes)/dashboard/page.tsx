@@ -3,6 +3,7 @@ import DataComponent from "@/app/(dashboard)/(routes)/dashboard/data";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {Calendar} from "@/components/ui/calendar";
 
 const DashboardPage = () => {
 
@@ -21,8 +22,9 @@ const DashboardPage = () => {
                     Dashboard
                 </div>
             </div>
-            <div className="w-max mx-auto">
+            <div className="w-max mx-auto flex flex-row gap-32  ">
                 <DataComponent />
+                <Calendar className="mt-8"/>
             </div>
         </div>
     );
