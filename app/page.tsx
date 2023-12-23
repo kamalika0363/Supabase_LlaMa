@@ -1,19 +1,17 @@
-import DeployButton from '../components/DeployButton'
 import AuthButton from '../components/AuthButton'
 import { createClient } from '@/utils/supabase/server'
 import ConnectSupabaseSteps from '@/components/ConnectSupabaseSteps'
-import SignUpUserSteps from '@/components/SummarizerBox'
+import SummaryBox from '@/components/SummarizerBox'
 import Header from '@/components/Header'
 import { cookies } from 'next/headers'
-import Link from 'next/link'
 import LinkBox from '@/components/LinkBox'
+import SideBar from "@/components/SideBar";
 
 export default async function Index() {
   const cookieStore = cookies()
 
   const canInitSupabaseClient = () => {
-    // This function is just for the interactive tutorial.
-    // Feel free to remove it once you have Supabase connected.
+
     try {
       createClient(cookieStore)
       return true
@@ -25,19 +23,18 @@ export default async function Index() {
   const isSupabaseConnected = canInitSupabaseClient()
 
   return (
-    <div className="flex flex-col items-center justify-center flex-1 w-full sm:gap-20">
+    <div className="flex flex-col items-center bg-black justify-center flex-1 w-full sm:gap-20">
       <nav className="flex justify-center w-full h-16 border-b border-b-foreground/10">
         <div className="flex items-center justify-between w-full max-w-4xl p-3 text-sm">
-          {/* <DeployButton /> */}
           {isSupabaseConnected && <AuthButton />}
         </div>
       </nav>
 
-      <div className="justify-center items-center ">
+      <div className="justify-center items-center w-full">
         <Header />
-        <main className="flex flex-col sm:flex-row justify-center gap-8 p-4">
-          {/* <h2 className="mb-4 text-4xl font-bold">Next steps</h2> */}
-          {isSupabaseConnected ? <SignUpUserSteps /> : <ConnectSupabaseSteps />}
+        <main className="flex flex-col sm:flex-row justify-center gap-4 p-4">
+            {/*<SideBar />*/}
+          {isSupabaseConnected ? <SummaryBox /> : <ConnectSupabaseSteps />}
           <LinkBox />
         </main>
       </div>
@@ -46,8 +43,6 @@ export default async function Index() {
         <p>
           Created{' '}
           <a
-            href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-            target="_blank"
             className="font-bold hover:underline"
             rel="noreferrer"
           >

@@ -1,4 +1,4 @@
-import { query } from '../../utils/query';
+import { query } from '@/utils/query';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

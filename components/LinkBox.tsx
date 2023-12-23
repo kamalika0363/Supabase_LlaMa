@@ -70,9 +70,9 @@ const LinkBox: React.FC = () => {
 
 
   return (
-      <div className="sm:w-1/2 bg-gradient-to-r from-[#000000] to-[#090909] sm:p-6 rounded-xl flex flex-col item-center justify-center md:h-full h-96 border-2 border-[#272728] overflow-auto p-4 ">
-        <div className="bg-[#04090b] p-5 sm:mt-0 rounded-xl item-center justify-center w-full h-96 border-2 border-[#3a3a3a] overflow-auto">
-          <p className="justify-center mb-2 font-bold text-gray-300">Stored Links</p>
+      <div className="sm:w-1/2 bg-black sm:p-6 rounded-xl flex flex-col item-center justify-center md:h-full h-96 border border-[#272728] overflow-auto p-4 ">
+        <div className="bg-black p-5 sm:mt-0 rounded-xl item-center justify-center w-full h-96 border border-[#272728] overflow-auto">
+          <p className="justify-center mb-2 font-bold text-gray-300">Current Stored Links</p>
           <ul className="list-disc list-inside">
             {notes &&
                 notes.map((note) => (
@@ -104,11 +104,11 @@ const LinkBox: React.FC = () => {
               value={newNote}
               onChange={(e) => setNewNote(e.target.value)}
               placeholder="Add Links"
-              className="text-gray-300 rounded-xl p-2 pl-5 w-full border-2 border-[#3a3a3a] bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] font-semibold"
+              className="text-gray-300 rounded-xl p-2 pl-5 w-full border border-[#272728] bg-black font-semibold"
           />
           <button
               type="submit"
-              className="text-white rounded-xl p-3 border-2 border-[#3a3a3a] bg-[#272728]"
+              className="text-white rounded-xl p-3 border border-[#272728]"
           >
             <img src={"Icon.svg"} alt="Add" />
           </button>

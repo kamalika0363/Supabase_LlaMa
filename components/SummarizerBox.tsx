@@ -1,7 +1,6 @@
-// components/SummaryBox.tsx
 "use client";
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import { query } from '../utils/query';
+import { query } from '@/utils/query';
 
 const SummaryBox: React.FC = () => {
     const [inputData, setInputData] = useState<string>('');
@@ -30,10 +29,10 @@ const SummaryBox: React.FC = () => {
     };
 
     return (
-        <div className="sm:w-1/2 bg-gradient-to-r from-[#000000] to-[#090909] sm:p-6 rounded-xl flex flex-col item-center justify-center md:h-full h-96 border-2 border-[#272728] overflow-auto p-4 ">
-            <div className="bg-[#04090b] p-5 mt-2 sm:mt-0 rounded-xl item-center justify-center w-full h-96 border-2 border-[#3a3a3a] overflow-auto">
+        <div className="sm:w-1/2 bg-black sm:p-6 rounded-xl flex flex-col item-center justify-center md:h-full h-96 border border-[#272728] overflow-auto p-4 ">
+            <div className="bg-black p-5 mt-2 sm:mt-0 rounded-xl item-center justify-center w-full h-96 border border-[#27272a] overflow-auto">
                 <p className="justify-center mb-2 font-bold text-gray-300">Summarized Data</p>
-                <h1>{output}</h1>
+                <h1 className="text-gray-200">{output}</h1>
             </div>
             <form onSubmit={handleSubmit} className="flex mt-20 space-x-4 rounded-lg">
                 <input
@@ -41,12 +40,12 @@ const SummaryBox: React.FC = () => {
                     name="link"
                     value={inputData}
                     onChange={handleInputChange}
-                    className="text-gray-300 rounded-xl p-2 pl-5 w-full border-2 border-[#3a3a3a] bg-gradient-to-r from-[#0F0F0F] to-[#2E2E2E] font-semibold"
+                    className="text-gray-300 rounded-xl p-2 pl-5 w-full border border-[#27272a] bg-black font-semibold"
                     placeholder="Add a link or text"
                 />
                 <button
                     type="submit"
-                    className="text-white rounded-xl p-3 border-2 border-[#3a3a3a] bg-[#272728]"
+                    className="text-white rounded-xl p-3 border border-[#27272a]"
                 >
                     <img src="Icon.svg" alt="Add" />
                 </button>
