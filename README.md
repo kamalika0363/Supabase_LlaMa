@@ -21,7 +21,7 @@
 2. Clone this repo and install dependencies
 
    ```bash
-   git clone https://github.com/kamalika0363/Supabase_LlaMa.git
+   git clone https://github.com/kamalika0363/task_ai.git
    ```
       ```bash
    npm install
@@ -30,7 +30,7 @@
 3. Use `cd` to change into the app's directory
 
    ```bash
-   cd Supabase_LlaMa
+   cd task_ai
    ```
 
 4. Rename `.env.local.example` to `.env.local` and update the following:
